@@ -115,22 +115,22 @@ export function StudioBento() {
 
         <div className="mt-16 grid gap-6 lg:grid-cols-12">
           {/* Main Visualizer Card */}
-          <article className="interactive-card min-h-[560px] overflow-hidden !p-0 lg:col-span-7">
+          <article className="interactive-card min-h-[600px] overflow-hidden !p-0 lg:col-span-7">
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border-ash p-6">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <span
                   className={`h-2.5 w-2.5 rounded-full animate-pulse ${flow.accent}`}
                 />
-                <span className="label-type text-midnight-ink">
+                <span className="label-type text-midnight-ink tracking-tight">
                   {flow.name}
                 </span>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2.5">
                 {flows.map((item, index) => (
                   <button
                     key={item.name}
                     onClick={() => selectFlow(index)}
-                    className={`h-8 min-w-[32px] rounded-full px-2 text-[11px] font-bold transition-all ${
+                    className={`h-9 min-w-[36px] rounded-lg px-2 text-[12px] font-bold transition-all ${
                       index === activeFlow
                         ? "bg-midnight-ink text-canvas-white shadow-sm"
                         : "bg-fog-gray text-slate-text hover:bg-border-ash"
@@ -143,7 +143,7 @@ export function StudioBento() {
             </div>
 
             <div className="grid gap-6 p-6 md:grid-cols-[1fr_240px]">
-              <div className="relative min-h-[400px] overflow-hidden rounded-[40px] bg-fog-gray shadow-inner">
+              <div className="relative min-h-[440px] overflow-hidden rounded-[var(--radius-cards)] bg-fog-gray shadow-inner">
                 <Image
                   key={flow.image}
                   src={flow.image}
@@ -152,17 +152,17 @@ export function StudioBento() {
                   sizes="(max-width: 768px) 100vw, 600px"
                   className="object-cover transition-transform duration-1000"
                 />
-                <div className="absolute left-4 top-4 rounded-full bg-canvas-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-midnight-ink backdrop-blur-md shadow-sm">
+                <div className="absolute left-4 top-4 rounded-lg bg-canvas-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-midnight-ink backdrop-blur-md shadow-sm border border-white/20">
                   {renderStages[renderStage]}
                 </div>
-                <div className="absolute inset-x-4 bottom-4 rounded-[32px] bg-canvas-white/95 p-5 backdrop-blur-md shadow-lg border border-white/20">
+                <div className="absolute inset-x-4 bottom-4 rounded-[var(--radius-buttons)] bg-canvas-white/95 p-6 backdrop-blur-md shadow-lg border border-white/10">
                   <div className="mb-4 h-1.5 overflow-hidden rounded-full bg-fog-gray">
                     <div 
-                      className="h-full rounded-full bg-midnight-ink transition-all duration-500" 
+                      className="h-full rounded-full bg-midnight-ink transition-all duration-700 ease-in-out" 
                       style={{ width: `${visibleProgress}%` }}
                     />
                   </div>
-                  <p className="body-type text-[13px] leading-relaxed text-midnight-ink italic">
+                  <p className="body-type text-[14px] leading-relaxed text-midnight-ink italic opacity-90">
                     "{flow.prompt}"
                   </p>
                 </div>
@@ -197,10 +197,10 @@ export function StudioBento() {
                         setActiveTool(index);
                         setRenderStage(Math.min(index + 1, renderStages.length - 1));
                       }}
-                      className={`group flex flex-col justify-between rounded-[32px] border p-5 text-left transition-all duration-200 ${
+                      className={`group flex flex-col justify-between rounded-[var(--radius-buttons)] border p-5 text-left transition-all duration-300 ${
                         activeTool === index
-                          ? "bg-midnight-ink text-canvas-white border-midnight-ink shadow-md"
-                          : "bg-canvas-white text-midnight-ink border-border-ash hover:border-medium-gray"
+                          ? "bg-midnight-ink text-canvas-white border-midnight-ink shadow-md translate-x-1"
+                          : "bg-canvas-white text-midnight-ink border-border-ash hover:border-medium-gray hover:bg-fog-gray/30"
                       }`}
                     >
                       <LucideIcon
@@ -209,10 +209,10 @@ export function StudioBento() {
                         }`}
                       />
                       <div className="mt-4">
-                        <span className="label-type block text-[12px] opacity-70">
+                        <span className="label-type block text-[11px] opacity-70">
                           {label as string}
                         </span>
-                        <span className="display-type block mt-1 text-[14px]">
+                        <span className="display-type block mt-1 text-[15px] leading-tight">
                           {value as string}
                         </span>
                       </div>
@@ -229,33 +229,35 @@ export function StudioBento() {
               <div className="flex items-start justify-between">
                 <div>
                   <p className="label-type text-slate-text">Creation flow</p>
-                  <h3 className="display-type mt-4 text-4xl leading-[1.1] text-midnight-ink">
+                  <h3 className="display-type mt-6 text-4xl leading-[1.1] text-midnight-ink">
                     {visibleProgress}% ready for ship.
                   </h3>
                 </div>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-fog-gray text-midnight-ink">
+                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-fog-gray text-midnight-ink shadow-subtle">
                   <Sparkles className="h-5 w-5" aria-hidden="true" />
                 </div>
               </div>
 
-              <div className="mt-10 h-3 overflow-hidden rounded-full bg-fog-gray shadow-inner">
+              <div className="mt-12 h-3 overflow-hidden rounded-full bg-fog-gray shadow-inner">
                 <div
                   className="h-full rounded-full bg-midnight-ink transition-all duration-1000 ease-out"
                   style={{ width: `${visibleProgress}%` }}
                 />
               </div>
 
-              <div className="mt-10 space-y-2">
+              <div className="mt-12 space-y-3">
                 {renderStages.slice(0, 4).map((item, index) => (
                   <div
                     key={item}
-                    className="flex items-center justify-between rounded-2xl p-3 transition-colors hover:bg-fog-gray"
+                    className={`flex items-center justify-between rounded-lg p-4 transition-all ${
+                      index <= renderStage ? "bg-fog-gray/50 shadow-subtle" : ""
+                    }`}
                   >
                     <div className="flex items-center gap-4">
                       <div
-                        className={`flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 ${
+                        className={`flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-500 ${
                           index <= renderStage
-                            ? "bg-midnight-ink text-canvas-white"
+                            ? "bg-midnight-ink text-canvas-white scale-110"
                             : "bg-border-ash text-medium-gray"
                         }`}
                       >
@@ -265,11 +267,11 @@ export function StudioBento() {
                           <Clock3 className="h-4 w-4" aria-hidden="true" />
                         )}
                       </div>
-                      <span className={`text-[15px] font-medium ${index <= renderStage ? "text-midnight-ink" : "text-slate-text"}`}>
+                      <span className={`text-[15px] font-medium tracking-tight ${index <= renderStage ? "text-midnight-ink" : "text-slate-text"}`}>
                         {item}
                       </span>
                     </div>
-                    <span className="font-mono text-[12px] font-bold text-medium-gray opacity-40">
+                    <span className="font-mono text-[12px] font-bold text-medium-gray opacity-30">
                       0{index + 1}
                     </span>
                   </div>
@@ -280,36 +282,36 @@ export function StudioBento() {
 
           {/* Production Lanes */}
           <article className="interactive-card !p-8 lg:col-span-4">
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-10 flex items-center justify-between">
               <div>
                 <p className="label-type text-slate-text">Dashboard</p>
                 <h3 className="display-type mt-2 text-xl text-midnight-ink">
                   Production lanes
                 </h3>
               </div>
-              <Layers3 className="h-5 w-5 text-midnight-ink opacity-40" />
+              <Layers3 className="h-5 w-5 text-midnight-ink opacity-30" />
             </div>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {dashboardRows.map(([name, count, state, flowIndex], index) => (
                 <button
                   key={name as string}
                   onClick={() => selectFlow(flowIndex as number)}
-                  className={`group flex w-full items-center justify-between rounded-[32px] border p-4 transition-all ${
+                  className={`group flex w-full items-center justify-between rounded-[var(--radius-buttons)] border p-5 transition-all ${
                     index === activeFlow
-                      ? "bg-midnight-ink border-midnight-ink shadow-md"
-                      : "bg-canvas-white border-border-ash hover:border-medium-gray"
+                      ? "bg-midnight-ink border-midnight-ink shadow-lg -translate-y-1"
+                      : "bg-canvas-white border-border-ash hover:border-medium-gray hover:bg-fog-gray/20"
                   }`}
                 >
                   <div className="text-left">
-                    <p className={`text-[15px] font-semibold ${index === activeFlow ? "text-canvas-white" : "text-midnight-ink"}`}>
+                    <p className={`text-[15px] font-semibold tracking-tight ${index === activeFlow ? "text-canvas-white" : "text-midnight-ink"}`}>
                       {name as string}
                     </p>
-                    <p className={`text-[12px] ${index === activeFlow ? "text-canvas-white/60" : "text-slate-text"}`}>
+                    <p className={`text-[12px] mt-0.5 ${index === activeFlow ? "text-canvas-white/60" : "text-slate-text"}`}>
                       {count as string}
                     </p>
                   </div>
                   <span
-                    className={`rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider ${
+                    className={`rounded-md px-4 py-1.5 text-[10px] font-bold uppercase tracking-widest ${
                       index === activeFlow
                         ? "bg-canvas-white/10 text-canvas-white"
                         : "bg-fog-gray text-slate-text"
@@ -324,16 +326,16 @@ export function StudioBento() {
 
           {/* Variant Grid */}
           <article className="interactive-card !p-8 lg:col-span-5">
-            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-10 flex items-center justify-between">
               <div>
                 <p className="label-type text-slate-text">Variant grid</p>
                 <h3 className="display-type mt-2 text-xl text-midnight-ink">
                   Active outputs
                 </h3>
               </div>
-              <ScanLine className="h-5 w-5 text-midnight-ink opacity-40" />
+              <ScanLine className="h-5 w-5 text-midnight-ink opacity-30" />
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-4">
               {variantTiles.map((tile, index) => (
                 <button
                   key={tile.src}
@@ -342,10 +344,10 @@ export function StudioBento() {
                     setSelectedVariant(index);
                     setRenderStage(2);
                   }}
-                  className={`group relative aspect-square overflow-hidden rounded-[24px] border-2 transition-all ${
+                  className={`group relative aspect-square overflow-hidden rounded-md border-2 transition-all duration-300 ${
                     index === selectedVariant 
-                      ? "border-midnight-ink scale-95" 
-                      : "border-transparent hover:border-border-ash"
+                      ? "border-midnight-ink scale-95 shadow-inner" 
+                      : "border-transparent hover:border-border-ash hover:scale-105"
                   }`}
                   aria-label={`Select ${tile.label} variant`}
                 >
@@ -362,15 +364,15 @@ export function StudioBento() {
           </article>
 
           {/* Quality Signal */}
-          <article className="interactive-card !bg-fog-gray !border-none !p-8 lg:col-span-3">
-            <div className="mb-10 flex items-center justify-between">
+          <article className="interactive-card !bg-fog-gray !border-none !p-10 lg:col-span-3">
+            <div className="mb-12 flex items-center justify-between">
               <div>
                 <p className="label-type text-slate-text">Quality signal</p>
                 <h3 className="display-type mt-2 text-xl text-midnight-ink">
                   Review telemetry
                 </h3>
               </div>
-              <Gauge className="h-5 w-5 text-midnight-ink opacity-40" />
+              <Gauge className="h-5 w-5 text-midnight-ink opacity-30" />
             </div>
             <div className="grid grid-cols-3 gap-4">
               {[
@@ -382,13 +384,13 @@ export function StudioBento() {
                   <p className="display-type text-4xl text-midnight-ink">
                     {value}
                   </p>
-                  <p className="label-type mt-2 text-[10px] text-slate-text">{label}</p>
+                  <p className="label-type mt-3 text-[10px] text-slate-text tracking-widest">{label}</p>
                 </div>
               ))}
             </div>
             <button
               onClick={() => setRenderStage((current) => (current + 1) % renderStages.length)}
-              className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-full bg-midnight-ink py-4 text-[14px] font-bold text-canvas-white transition-all hover:translate-y-[-2px] hover:shadow-lg active:translate-y-0"
+              className="mt-12 inline-flex w-full items-center justify-center gap-3 rounded-[var(--radius-buttons)] bg-midnight-ink py-4.5 text-[14px] font-bold text-canvas-white transition-all hover:bg-jet-black hover:shadow-xl active:scale-95"
             >
               Open report
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

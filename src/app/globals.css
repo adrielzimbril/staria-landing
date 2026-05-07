@@ -29,9 +29,9 @@
   --gradient-sea-mist: linear-gradient(rgb(186, 212, 213), rgb(88, 134, 151));
 
   /* Radius */
-  --radius-cards: 100px;
-  --radius-badges: 4px;
-  --radius-buttons: 32px;
+  --radius-cards: 16px;
+  --radius-badges: 8px;
+  --radius-buttons: 12px;
   --radius-deepcurve: 1600px;
 }
 

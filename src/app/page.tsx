@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-eggshell">
+      <main className="min-h-screen bg-canvas-white">
         <div className="fixed inset-0 z-0 pointer-events-none opacity-[0.75]">
           <PixelBlast
             variant="square"

@@ -17,7 +17,7 @@ export function FAQ() {
             >
               <summary className="display-type flex list-none items-center justify-between gap-4 text-[20px] text-midnight-ink outline-none focus-visible:ring-2 focus-visible:ring-midnight-ink/20 cursor-pointer">
                 {faq.question}
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-fog-gray text-xl text-midnight-ink transition-all group-open:rotate-45 group-hover:bg-midnight-ink group-hover:text-canvas-white">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-fog-gray text-xl text-midnight-ink transition-all group-open:rotate-45 group-hover:bg-midnight-ink group-hover:text-canvas-white">
                   +
                 </span>
               </summary>

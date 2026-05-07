@@ -31,10 +31,10 @@ export function Gallery() {
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
               />
               <div className="absolute inset-x-4 top-4 flex items-center justify-between">
-                <span className="label-type rounded-full bg-canvas-white/90 px-4 py-2 text-[10px] text-midnight-ink shadow-subtle backdrop-blur-md">
+                <span className="label-type rounded-md bg-canvas-white/90 px-4 py-2 text-[10px] text-midnight-ink shadow-subtle backdrop-blur-md">
                   {tile.label}
                 </span>
-                <span className="font-mono rounded-full bg-midnight-ink/80 px-4 py-2 text-[10px] tracking-tighter text-canvas-white backdrop-blur-md">
+                <span className="font-mono rounded-md bg-midnight-ink/80 px-4 py-2 text-[10px] tracking-tighter text-canvas-white backdrop-blur-md">
                   V0{index + 1}
                 </span>
               </div>

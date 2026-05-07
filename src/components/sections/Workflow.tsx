@@ -18,7 +18,7 @@ export function Workflow() {
                 <span className="font-mono text-sm font-semibold text-medium-gray">
                   0{index + 1}
                 </span>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-fog-gray text-midnight-ink">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-fog-gray text-midnight-ink">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
               </div>

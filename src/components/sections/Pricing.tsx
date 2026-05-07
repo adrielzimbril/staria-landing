@@ -13,91 +13,91 @@ export function Pricing() {
           body="Simple plans for a conceptual product: creator volume, shared team workflows, and enterprise governance."
         />
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-3">
-          {plans.map((plan) => (
-            <article
-              key={plan.name}
-              className={`interactive-card flex min-h-[600px] flex-col !p-10 ${
-                plan.featured 
-                  ? "bg-midnight-ink text-canvas-white border-midnight-ink" 
-                  : "bg-canvas-white text-midnight-ink border-border-ash"
-              }`}
-            >
-              <div className="mb-12 flex items-center justify-between">
-                <span
-                  className={`rounded-full px-4 py-1.5 text-[12px] font-semibold uppercase tracking-wider ${
-                    plan.featured
-                      ? "bg-canvas-white/10 text-canvas-white"
-                      : "bg-fog-gray text-slate-text"
-                  }`}
-                >
-                  {plan.featured ? "Recommended" : "Standard"}
-                </span>
-              </div>
-
-              <h3 className="display-type text-4xl">
-                {plan.name}
-              </h3>
-              <p
-                className={`mt-4 body-type text-sm leading-relaxed ${
-                  plan.featured ? "text-canvas-white/70" : "text-slate-text"
+          <div className="mt-16 grid gap-8 lg:grid-cols-3">
+            {plans.map((plan) => (
+              <article
+                key={plan.name}
+                className={`interactive-card flex min-h-[640px] flex-col !p-10 ${
+                  plan.featured 
+                    ? "bg-midnight-ink text-canvas-white border-midnight-ink shadow-xl ring-1 ring-white/10" 
+                    : "bg-canvas-white text-midnight-ink border-border-ash"
                 }`}
               >
-                {plan.description}
-              </p>
-
-              <div className="my-12 flex items-baseline gap-2">
-                <span className="display-type text-6xl">
-                  {plan.price}
-                </span>
-                {plan.price !== "Custom" ? (
+                <div className="mb-12 flex items-center justify-between">
                   <span
-                    className={`text-lg ${
-                      plan.featured ? "text-canvas-white/50" : "text-slate-text"
+                    className={`rounded-md px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider ${
+                      plan.featured
+                        ? "bg-canvas-white/10 text-canvas-white"
+                        : "bg-fog-gray text-slate-text"
                     }`}
                   >
-                    /mo
+                    {plan.featured ? "Recommended" : "Standard"}
                   </span>
-                ) : null}
-              </div>
-
-              <div className="space-y-4 mb-10">
-                {plan.features.map((feature) => (
-                  <div key={feature} className="flex items-center gap-3">
-                    <div
-                      className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
-                        plan.featured
-                          ? "bg-canvas-white text-midnight-ink"
-                          : "bg-midnight-ink text-canvas-white"
-                      }`}
-                    >
-                      <Check className="h-3 w-3" aria-hidden="true" />
-                    </div>
+                </div>
+  
+                <h3 className="display-type text-4xl tracking-tight">
+                  {plan.name}
+                </h3>
+                <p
+                  className={`mt-6 body-type text-[15px] leading-relaxed ${
+                    plan.featured ? "text-canvas-white/70" : "text-slate-text"
+                  }`}
+                >
+                  {plan.description}
+                </p>
+  
+                <div className="my-12 flex items-baseline gap-2">
+                  <span className="display-type text-6xl">
+                    {plan.price}
+                  </span>
+                  {plan.price !== "Custom" ? (
                     <span
-                      className={`text-sm ${
-                        plan.featured ? "text-canvas-white/90" : "text-midnight-ink"
+                      className={`text-[20px] ${
+                        plan.featured ? "text-canvas-white/50" : "text-slate-text"
                       }`}
                     >
-                      {feature}
+                      /mo
                     </span>
-                  </div>
-                ))}
-              </div>
-
-              <Link
-                href="#cta"
-                className={`mt-auto inline-flex min-h-[56px] items-center justify-center gap-2 rounded-full px-8 text-[16px] font-medium no-underline transition-all hover:scale-[1.02] ${
-                  plan.featured
-                    ? "bg-canvas-white text-midnight-ink"
-                    : "bg-midnight-ink text-canvas-white"
-                }`}
-              >
-                Get Started
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </Link>
-            </article>
-          ))}
-        </div>
+                  ) : null}
+                </div>
+  
+                <div className="space-y-5 mb-12">
+                  {plan.features.map((feature) => (
+                    <div key={feature} className="flex items-center gap-4">
+                      <div
+                        className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${
+                          plan.featured
+                            ? "bg-canvas-white text-midnight-ink"
+                            : "bg-midnight-ink text-canvas-white"
+                        }`}
+                      >
+                        <Check className="h-3 w-3" aria-hidden="true" />
+                      </div>
+                      <span
+                        className={`text-[15px] ${
+                          plan.featured ? "text-canvas-white/90" : "text-midnight-ink"
+                        }`}
+                      >
+                        {feature}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+  
+                <Link
+                  href="#cta"
+                  className={`mt-auto inline-flex min-h-[56px] items-center justify-center gap-3 rounded-[var(--radius-buttons)] px-8 text-[16px] font-medium no-underline transition-all hover:scale-[1.02] active:scale-[0.98] ${
+                    plan.featured
+                      ? "bg-canvas-white text-midnight-ink hover:bg-white"
+                      : "bg-midnight-ink text-canvas-white hover:bg-jet-black"
+                  }`}
+                >
+                  Get Started
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </article>
+            ))}
+          </div>
       </div>
     </section>
   );
