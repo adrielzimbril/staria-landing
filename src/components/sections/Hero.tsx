@@ -283,7 +283,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-28">
+        <div className="mt-28 hidden">
           <HeroStudioCard />
         </div>
       </div>

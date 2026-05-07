@@ -11,3 +11,5 @@ design.md
 .design/
 .deisgn/
 .design-files/
+
+next-env.d.ts
