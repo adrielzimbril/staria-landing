@@ -23,7 +23,7 @@ const flows = [
     name: "Instagram Reel",
     prompt: "Seasonal fashion launch. Vibe: High-energy, rapid cuts, trending audio.",
     image: "/img/glow-glitter-portrait-beautiful-woman.jpg",
-    accent: "bg-agent-violet",
+    accent: "bg-midnight-ink",
     progress: 78,
     queue: ["Hook optimized", "Visuals synced", "Export pending"],
     metrics: ["92", "84", "98"],
@@ -32,7 +32,7 @@ const flows = [
     name: "LinkedIn Post",
     prompt: "B2B thought leadership. Style: Minimalist architecture, insightful hooks.",
     image: "/img/modern-architectural-marvel-futuristic-building.jpg",
-    accent: "bg-action-blue",
+    accent: "bg-medium-gray",
     progress: 62,
     queue: ["Tone matched", "Asset rendered", "Compliance check"],
     metrics: ["88", "91", "96"],
@@ -41,7 +41,7 @@ const flows = [
     name: "TikTok Trend",
     prompt: "Behind-the-scenes aesthetic. Vibe: Raw textures, engaging narrative.",
     image: "/img/model-translucent-fabric-with-floral-accent.jpg",
-    accent: "bg-electric-blue",
+    accent: "bg-slate-text",
     progress: 91,
     queue: ["Brief parsed", "Script locked", "Ready for post"],
     metrics: ["95", "89", "97"],
@@ -105,7 +105,7 @@ export function StudioBento() {
   }, []);
 
   return (
-    <section id="studio" className="px-4 py-16 md:py-24">
+    <section id="studio" className="px-4 py-[var(--section-gap)]">
       <div className="section-shell">
         <SectionHeader
           eyebrow="Interactive studio"
@@ -113,14 +113,15 @@ export function StudioBento() {
           body="Deploy specialized agents for each platform. Tap through production flows and watch the surrounding cards update: script state, queue health, variants, and platform compliance."
         />
 
-        <div className="mt-8 grid gap-3 lg:grid-cols-12">
-          <article className="hairline-card min-h-[520px] overflow-hidden lg:col-span-7">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-chalk p-4 md:p-5">
-                  <div className="flex items-center gap-2">
+        <div className="mt-16 grid gap-6 lg:grid-cols-12">
+          {/* Main Visualizer Card */}
+          <article className="interactive-card min-h-[560px] overflow-hidden !p-0 lg:col-span-7">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-border-ash p-6">
+              <div className="flex items-center gap-2">
                 <span
-                  className={`render-pulse h-2.5 w-2.5 rounded-full ${flow.accent}`}
+                  className={`h-2.5 w-2.5 rounded-full animate-pulse ${flow.accent}`}
                 />
-                <span className="text-sm font-medium text-midnight-graphite">
+                <span className="label-type text-midnight-ink">
                   {flow.name}
                 </span>
               </div>
@@ -128,13 +129,11 @@ export function StudioBento() {
                 {flows.map((item, index) => (
                   <button
                     key={item.name}
-                    onClick={() => {
-                      selectFlow(index);
-                    }}
-                    className={`h-8 rounded-full px-3 text-xs font-medium transition-colors ${
+                    onClick={() => selectFlow(index)}
+                    className={`h-8 min-w-[32px] rounded-full px-2 text-[11px] font-bold transition-all ${
                       index === activeFlow
-                        ? "bg-midnight-graphite text-canvas-white"
-                        : "bg-cloud-white text-slate-gray hover:text-midnight-graphite"
+                        ? "bg-midnight-ink text-canvas-white shadow-sm"
+                        : "bg-fog-gray text-slate-text hover:bg-border-ash"
                     }`}
                   >
                     0{index + 1}
@@ -143,30 +142,33 @@ export function StudioBento() {
               </div>
             </div>
 
-            <div className="grid gap-3 p-3 md:grid-cols-[1fr_230px] md:p-4">
-              <div className="render-scan relative min-h-[380px] overflow-hidden rounded-[12px] bg-powder">
+            <div className="grid gap-6 p-6 md:grid-cols-[1fr_240px]">
+              <div className="relative min-h-[400px] overflow-hidden rounded-[40px] bg-fog-gray shadow-inner">
                 <Image
                   key={flow.image}
                   src={flow.image}
                   alt={`${flow.name} generated preview`}
                   fill
-                  sizes="(max-width: 768px) 100vw, 680px"
-                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 600px"
+                  className="object-cover transition-transform duration-1000"
                 />
-                <div className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1.5 text-xs font-medium text-obsidian backdrop-blur">
-                  {renderStages[renderStage]} / {activeToolLabels[activeTool]}
+                <div className="absolute left-4 top-4 rounded-full bg-canvas-white/90 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-midnight-ink backdrop-blur-md shadow-sm">
+                  {renderStages[renderStage]}
                 </div>
-                <div className="absolute inset-x-3 bottom-3 rounded-[12px] bg-white/90 p-3 backdrop-blur">
-                  <div className="mb-3 h-1.5 overflow-hidden rounded-full bg-powder">
-                    <div className="render-fill h-full rounded-full bg-obsidian" />
+                <div className="absolute inset-x-4 bottom-4 rounded-[32px] bg-canvas-white/95 p-5 backdrop-blur-md shadow-lg border border-white/20">
+                  <div className="mb-4 h-1.5 overflow-hidden rounded-full bg-fog-gray">
+                    <div 
+                      className="h-full rounded-full bg-midnight-ink transition-all duration-500" 
+                      style={{ width: `${visibleProgress}%` }}
+                    />
                   </div>
-                  <p className="font-mono text-[11px] leading-5 text-gravel">
-                    {flow.prompt}
+                  <p className="body-type text-[13px] leading-relaxed text-midnight-ink italic">
+                    "{flow.prompt}"
                   </p>
                 </div>
               </div>
 
-              <div className="grid gap-3">
+              <div className="grid gap-4">
                 {[
                   [
                     ImagePlus,
@@ -193,52 +195,27 @@ export function StudioBento() {
                       key={label as string}
                       onClick={() => {
                         setActiveTool(index);
-                        setRenderStage(
-                          Math.min(index + 1, renderStages.length - 1),
-                        );
+                        setRenderStage(Math.min(index + 1, renderStages.length - 1));
                       }}
-                      className={`interactive-card flex min-h-24 items-start justify-between rounded-[12px] p-4 text-left ${
+                      className={`group flex flex-col justify-between rounded-[32px] border p-5 text-left transition-all duration-200 ${
                         activeTool === index
-                          ? "bg-obsidian text-eggshell"
-                          : "bg-powder text-obsidian"
+                          ? "bg-midnight-ink text-canvas-white border-midnight-ink shadow-md"
+                          : "bg-canvas-white text-midnight-ink border-border-ash hover:border-medium-gray"
                       }`}
                     >
-                      <span>
-                        <LucideIcon
-                          className={`mb-4 h-4 w-4 ${
-                            activeTool === index
-                              ? "text-eggshell"
-                              : "text-obsidian"
-                          }`}
-                          aria-hidden="true"
-                        />
-                        <span
-                          className={`block text-sm font-medium ${
-                            activeTool === index
-                              ? "text-eggshell"
-                              : "text-obsidian"
-                          }`}
-                        >
+                      <LucideIcon
+                        className={`h-5 w-5 ${
+                          activeTool === index ? "text-canvas-white" : "text-slate-text"
+                        }`}
+                      />
+                      <div className="mt-4">
+                        <span className="label-type block text-[12px] opacity-70">
                           {label as string}
                         </span>
-                        <span
-                          className={`mt-1 block text-xs ${
-                            activeTool === index
-                              ? "text-eggshell/62"
-                              : "text-gravel"
-                          }`}
-                        >
+                        <span className="display-type block mt-1 text-[14px]">
                           {value as string}
                         </span>
-                      </span>
-                      <ChevronRight
-                        className={`h-4 w-4 ${
-                          activeTool === index
-                            ? "text-eggshell/60"
-                            : "text-slate"
-                        }`}
-                        aria-hidden="true"
-                      />
+                      </div>
                     </button>
                   );
                 })}
@@ -246,91 +223,96 @@ export function StudioBento() {
             </div>
           </article>
 
-          <article className="hairline-card p-5 lg:col-span-5">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="label-type text-slate">Creation flow</p>
-                <h3 className="display-type mt-3 text-4xl leading-[1.05] text-obsidian">
-                  {visibleProgress}% through the current render path.
-                </h3>
+          {/* Creation Flow Card */}
+          <article className="interactive-card flex flex-col justify-between !p-10 lg:col-span-5">
+            <div>
+              <div className="flex items-start justify-between">
+                <div>
+                  <p className="label-type text-slate-text">Creation flow</p>
+                  <h3 className="display-type mt-4 text-4xl leading-[1.1] text-midnight-ink">
+                    {visibleProgress}% ready for ship.
+                  </h3>
+                </div>
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-fog-gray text-midnight-ink">
+                  <Sparkles className="h-5 w-5" aria-hidden="true" />
+                </div>
               </div>
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-powder">
-                <Sparkles
-                  className="h-4 w-4 text-obsidian"
-                  aria-hidden="true"
-                />
-              </span>
-            </div>
 
-            <div className="mt-8 h-2 overflow-hidden rounded-full bg-cloud-white">
-              <div
-                className="h-full rounded-full bg-midnight-graphite transition-all duration-500"
-                style={{ width: `${visibleProgress}%` }}
-              />
-            </div>
-
-            <div className="mt-6 grid gap-3">
-              {renderStages.slice(0, 4).map((item, index) => (
+              <div className="mt-10 h-3 overflow-hidden rounded-full bg-fog-gray shadow-inner">
                 <div
-                  key={item}
-                  className="flex items-center justify-between border-b border-fog/20 pb-3 last:border-b-0"
-                >
-                  <div className="flex items-center gap-3">
-                    <span
-                      className={`flex h-6 w-6 items-center justify-center rounded-full ${
-                        index <= renderStage
-                          ? "bg-midnight-graphite text-canvas-white"
-                          : "bg-cloud-white text-slate-gray"
-                      }`}
-                    >
-                      {index <= renderStage ? (
-                        <Check className="h-3.5 w-3.5" aria-hidden="true" />
-                      ) : (
-                        <Clock3 className="h-3.5 w-3.5" aria-hidden="true" />
-                      )}
-                    </span>
-                    <span className="text-sm font-medium text-midnight-graphite">
-                      {item}
+                  className="h-full rounded-full bg-midnight-ink transition-all duration-1000 ease-out"
+                  style={{ width: `${visibleProgress}%` }}
+                />
+              </div>
+
+              <div className="mt-10 space-y-2">
+                {renderStages.slice(0, 4).map((item, index) => (
+                  <div
+                    key={item}
+                    className="flex items-center justify-between rounded-2xl p-3 transition-colors hover:bg-fog-gray"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div
+                        className={`flex h-8 w-8 items-center justify-center rounded-full transition-all duration-300 ${
+                          index <= renderStage
+                            ? "bg-midnight-ink text-canvas-white"
+                            : "bg-border-ash text-medium-gray"
+                        }`}
+                      >
+                        {index <= renderStage ? (
+                          <Check className="h-4 w-4" aria-hidden="true" />
+                        ) : (
+                          <Clock3 className="h-4 w-4" aria-hidden="true" />
+                        )}
+                      </div>
+                      <span className={`text-[15px] font-medium ${index <= renderStage ? "text-midnight-ink" : "text-slate-text"}`}>
+                        {item}
+                      </span>
+                    </div>
+                    <span className="font-mono text-[12px] font-bold text-medium-gray opacity-40">
+                      0{index + 1}
                     </span>
                   </div>
-                  <span className="font-mono text-[11px] text-fog">
-                    0{index + 1}
-                  </span>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </article>
 
-          <article className="hairline-card p-5 lg:col-span-4">
-            <div className="mb-4 flex items-center justify-between">
+          {/* Production Lanes */}
+          <article className="interactive-card !p-8 lg:col-span-4">
+            <div className="mb-8 flex items-center justify-between">
               <div>
-                <p className="label-type text-slate">Dashboard</p>
-                <h3 className="mt-2 text-lg font-medium text-obsidian">
+                <p className="label-type text-slate-text">Dashboard</p>
+                <h3 className="display-type mt-2 text-xl text-midnight-ink">
                   Production lanes
                 </h3>
               </div>
-              <Layers3 className="h-5 w-5 text-obsidian" aria-hidden="true" />
+              <Layers3 className="h-5 w-5 text-midnight-ink opacity-40" />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-3">
               {dashboardRows.map(([name, count, state, flowIndex], index) => (
                 <button
                   key={name as string}
                   onClick={() => selectFlow(flowIndex as number)}
-                  className="interactive-card grid w-full grid-cols-[1fr_auto] gap-3 rounded-[12px] px-2 text-left"
+                  className={`group flex w-full items-center justify-between rounded-[32px] border p-4 transition-all ${
+                    index === activeFlow
+                      ? "bg-midnight-ink border-midnight-ink shadow-md"
+                      : "bg-canvas-white border-border-ash hover:border-medium-gray"
+                  }`}
                 >
-                  <div>
-                    <p className="text-sm font-medium text-obsidian">
+                  <div className="text-left">
+                    <p className={`text-[15px] font-semibold ${index === activeFlow ? "text-canvas-white" : "text-midnight-ink"}`}>
                       {name as string}
                     </p>
-                    <p className="mt-1 text-xs text-gravel">
+                    <p className={`text-[12px] ${index === activeFlow ? "text-canvas-white/60" : "text-slate-text"}`}>
                       {count as string}
                     </p>
                   </div>
                   <span
-                    className={`h-fit rounded-full px-3 py-1.5 text-[11px] font-medium ${
+                    className={`rounded-full px-4 py-1.5 text-[10px] font-bold uppercase tracking-wider ${
                       index === activeFlow
-                        ? "bg-obsidian text-eggshell"
-                        : "bg-powder text-gravel"
+                        ? "bg-canvas-white/10 text-canvas-white"
+                        : "bg-fog-gray text-slate-text"
                     }`}
                   >
                     {state as string}
@@ -340,17 +322,18 @@ export function StudioBento() {
             </div>
           </article>
 
-          <article className="hairline-card overflow-hidden p-5 lg:col-span-5">
+          {/* Variant Grid */}
+          <article className="interactive-card !p-8 lg:col-span-5">
             <div className="mb-8 flex items-center justify-between">
               <div>
-                <p className="label-type text-slate">Variant grid</p>
-                <h3 className="mt-2 text-lg font-medium text-obsidian">
+                <p className="label-type text-slate-text">Variant grid</p>
+                <h3 className="display-type mt-2 text-xl text-midnight-ink">
                   Active outputs
                 </h3>
               </div>
-              <ScanLine className="h-5 w-5 text-obsidian" aria-hidden="true" />
+              <ScanLine className="h-5 w-5 text-midnight-ink opacity-40" />
             </div>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-3">
               {variantTiles.map((tile, index) => (
                 <button
                   key={tile.src}
@@ -359,8 +342,10 @@ export function StudioBento() {
                     setSelectedVariant(index);
                     setRenderStage(2);
                   }}
-                  className={`interactive-card relative aspect-square overflow-hidden rounded-lg bg-powder ${
-                    index === selectedVariant ? "ring-3 ring-[#ebebeb]" : ""
+                  className={`group relative aspect-square overflow-hidden rounded-[24px] border-2 transition-all ${
+                    index === selectedVariant 
+                      ? "border-midnight-ink scale-95" 
+                      : "border-transparent hover:border-border-ash"
                   }`}
                   aria-label={`Select ${tile.label} variant`}
                 >
@@ -369,42 +354,41 @@ export function StudioBento() {
                     alt=""
                     fill
                     sizes="120px"
-                    className="object-cover"
+                    className="object-cover transition-transform group-hover:scale-110"
                   />
                 </button>
               ))}
             </div>
           </article>
 
-          <article className="hairline-card bg-powder p-5 lg:col-span-3">
+          {/* Quality Signal */}
+          <article className="interactive-card !bg-fog-gray !border-none !p-8 lg:col-span-3">
             <div className="mb-10 flex items-center justify-between">
               <div>
-                <p className="label-type text-slate">Quality signal</p>
-                <h3 className="mt-2 text-lg font-medium text-obsidian">
+                <p className="label-type text-slate-text">Quality signal</p>
+                <h3 className="display-type mt-2 text-xl text-midnight-ink">
                   Review telemetry
                 </h3>
               </div>
-              <Gauge className="h-5 w-5 text-obsidian" aria-hidden="true" />
+              <Gauge className="h-5 w-5 text-midnight-ink opacity-40" />
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-4">
               {[
                 [flow.metrics[0], "Style"],
                 [flow.metrics[1], "Detail"],
                 [flow.metrics[2], "Safe"],
               ].map(([value, label]) => (
                 <div key={label}>
-                  <p className="display-type text-4xl leading-none text-obsidian">
+                  <p className="display-type text-4xl text-midnight-ink">
                     {value}
                   </p>
-                  <p className="mt-2 text-xs text-gravel">{label}</p>
+                  <p className="label-type mt-2 text-[10px] text-slate-text">{label}</p>
                 </div>
               ))}
             </div>
             <button
-              onClick={() =>
-                setRenderStage((current) => (current + 1) % renderStages.length)
-              }
-              className="pill-hover mt-8 inline-flex min-h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-medium text-obsidian"
+              onClick={() => setRenderStage((current) => (current + 1) % renderStages.length)}
+              className="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-full bg-midnight-ink py-4 text-[14px] font-bold text-canvas-white transition-all hover:translate-y-[-2px] hover:shadow-lg active:translate-y-0"
             >
               Open report
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

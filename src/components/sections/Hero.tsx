@@ -22,7 +22,7 @@ const heroSlides = [
     prompt:
       "Hook: 'Why your brand is stuck.' Visual: Soft bokeh, high-end lifestyle. Audio: Trending minimal lo-fi.",
     tags: ["viral-hook", "9:16", "brand-synced"],
-    accent: "bg-agent-violet",
+    accent: "bg-[#efdcb6]",
     stats: [
       ["10x", "Velocity"],
       ["99", "Voice match"],
@@ -36,7 +36,7 @@ const heroSlides = [
     prompt:
       "5 slides explaining AI future. Style: Minimalist architecture, cool tones, precise typography overlay.",
     tags: ["educational", "1:1", "high-retention"],
-    accent: "bg-action-blue",
+    accent: "bg-[#bad4d5]",
     stats: [
       ["8s", "Draft time"],
       ["92", "Voice match"],
@@ -50,7 +50,7 @@ const heroSlides = [
     prompt:
       "Atmospheric fashion short. Narrative: 'The invisible thread.' Visual: Dreamy, ethereal lighting, fabric detail.",
     tags: ["storytelling", "9:16", "art-house"],
-    accent: "bg-electric-blue",
+    accent: "bg-[#eba37e]",
     stats: [
       ["15s", "Render"],
       ["96", "Voice match"],
@@ -107,8 +107,8 @@ function HeroStudioCard() {
   };
 
   return (
-    <div className="hairline-card max-w-[calc(100vw-32px)] overflow-hidden p-3 md:p-4 bg-canvas-white border border-fog/20 shadow-card">
-      <div className="mb-3 flex items-center justify-between gap-3 border-b border-cloud-white pb-3">
+    <div className="mx-auto w-full max-w-[1200px] overflow-hidden rounded-[48px] md:rounded-[80px] bg-canvas-white border border-border-ash p-4 md:p-6 shadow-[rgba(0,0,0,0.02)_0_20px_40px]">
+      <div className="mb-4 flex items-center justify-between gap-3 border-b border-border-ash pb-4">
         <div className="flex items-center gap-2">
           {heroSlides.map((item, index) => (
             <button
@@ -117,74 +117,78 @@ function HeroStudioCard() {
               className={`h-2.5 rounded-full transition-all ${
                 index === activeSlide
                   ? `w-8 ${item.accent}`
-                  : "w-2.5 bg-fog hover:bg-slate-gray"
+                  : "w-2.5 bg-fog-gray hover:bg-border-ash"
               }`}
               aria-label={`Show ${item.title}`}
             />
           ))}
         </div>
-        <p className="hidden font-mono text-[11px] text-slate-gray sm:block">
+        <p className="hidden font-mono text-[11px] text-medium-gray sm:block">
           staria/agent-orchestrator
         </p>
       </div>
 
-      <div className="grid gap-3 lg:grid-cols-[1fr_280px]">
-        <div className="relative min-h-[360px] overflow-hidden rounded-[12px] bg-cloud-white md:min-h-[500px]">
+      <div className="grid gap-4 lg:grid-cols-[1fr_320px]">
+        <div className="relative min-h-[360px] overflow-hidden rounded-[32px] md:rounded-[64px] bg-fog-gray md:min-h-[540px]">
           <Image
             key={slide.image}
             src={slide.image}
             alt={slide.alt}
             fill
-            sizes="(max-width: 1024px) 100vw, 780px"
+            sizes="(max-width: 1024px) 100vw, 840px"
             className="object-cover"
             fetchPriority="high"
           />
-          <div className="absolute left-3 top-3 rounded-full bg-canvas-white/90 px-3 py-1.5 text-xs font-medium text-midnight-graphite shadow-subtle backdrop-blur">
+          <div className="absolute left-4 top-4 rounded-full bg-canvas-white/90 px-4 py-2 text-xs font-bold text-midnight-ink shadow-subtle backdrop-blur">
             {flowTools[activeTool].description}
           </div>
-          <div className="absolute inset-x-3 bottom-3 rounded-[12px] bg-canvas-white/90 p-3 shadow-subtle backdrop-blur-md">
-            <div className="mb-3 h-1.5 overflow-hidden rounded-full bg-cloud-white">
+          <div className="absolute inset-x-4 bottom-4 rounded-[24px] md:rounded-[40px] bg-canvas-white/95 p-4 md:p-6 shadow-subtle backdrop-blur-md">
+            <div className="mb-4 h-1.5 overflow-hidden rounded-full bg-fog-gray">
               <div
-                className="h-full rounded-full bg-midnight-graphite transition-all duration-300"
+                className="h-full rounded-full bg-midnight-ink transition-all duration-300"
                 style={{ width: `${toolProgress}%` }}
               />
             </div>
-            <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
-                <p className="text-sm font-medium text-midnight-graphite">
+                <p className="text-lg font-bold text-midnight-ink">
                   {slide.title}
                 </p>
-                <p className="mt-1 font-mono text-[11px] text-slate-gray">
-                  {slide.tags.map((tag) => `[${tag}]`).join(" ")}
-                </p>
+                <div className="mt-2 flex gap-2">
+                  {slide.tags.map((tag) => (
+                    <span key={tag} className="text-[10px] font-bold uppercase tracking-wider text-medium-gray">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-              <span className="rounded-full bg-midnight-graphite px-3 py-1.5 text-xs font-medium text-canvas-white">
+              <span className="rounded-full bg-midnight-ink px-4 py-2 text-xs font-bold text-canvas-white">
                 Step 0{activeTool + 1}
               </span>
             </div>
           </div>
         </div>
 
-        <aside className="grid content-between gap-3">
-          <div className="rounded-[12px] bg-cloud-white p-3">
-            <p className="label-type mb-3 text-slate-gray">Agent Instructions</p>
-            <p className="text-sm leading-6 text-midnight-graphite">{slide.prompt}</p>
+        <aside className="grid content-between gap-4">
+          <div className="rounded-[32px] bg-fog-gray p-6">
+            <p className="label-type mb-4 text-medium-gray">Agent Instructions</p>
+            <p className="text-[15px] leading-7 text-midnight-ink font-medium">{slide.prompt}</p>
           </div>
           <div className="grid gap-2">
             {flowTools.map(({ icon: Icon, label, description }, index) => (
               <button
                 key={label}
                 onClick={() => setActiveTool(index)}
-                className={`interactive-card flex min-h-11 items-center justify-between rounded-[12px] px-3 text-sm font-medium ${
+                className={`flex min-h-12 items-center justify-between rounded-[20px] px-4 text-sm font-bold transition-all ${
                   activeTool === index
-                    ? "bg-midnight-graphite text-canvas-white"
-                    : "border border-cloud-white bg-canvas-white text-midnight-graphite"
+                    ? "bg-midnight-ink text-canvas-white"
+                    : "bg-canvas-white text-midnight-ink border border-border-ash hover:bg-fog-gray"
                 }`}
               >
-                <span className="flex min-w-0 items-center gap-2">
+                <span className="flex min-w-0 items-center gap-3">
                   <Icon
                     className={`h-4 w-4 ${
-                      activeTool === index ? "text-canvas-white" : "text-slate-gray"
+                      activeTool === index ? "text-canvas-white" : "text-medium-gray"
                     }`}
                     aria-hidden="true"
                   />
@@ -192,7 +196,7 @@ function HeroStudioCard() {
                 </span>
                 <span
                   className={`hidden text-[11px] md:inline ${
-                    activeTool === index ? "text-canvas-white/60" : "text-slate-gray"
+                    activeTool === index ? "text-canvas-white/60" : "text-medium-gray"
                   }`}
                 >
                   {description}
@@ -204,12 +208,12 @@ function HeroStudioCard() {
             {slide.stats.map(([value, label]) => (
               <div
                 key={label}
-                className="rounded-[12px] bg-cloud-white p-3 text-left"
+                className="rounded-[24px] bg-fog-gray p-4 text-center"
               >
-                <strong className="display-type block text-xl leading-none text-midnight-graphite">
+                <strong className="display-type block text-2xl leading-none text-midnight-ink">
                   {value}
                 </strong>
-                <span className="mt-2 block text-[10px] leading-3 text-slate-gray uppercase font-semibold tracking-wider">
+                <span className="mt-2 block text-[9px] leading-3 text-medium-gray uppercase font-bold tracking-widest">
                   {label}
                 </span>
               </div>
@@ -220,8 +224,8 @@ function HeroStudioCard() {
               <button
                 key={item.title}
                 onClick={() => selectSlide(index)}
-                className={`interactive-card relative aspect-[4/3] overflow-hidden rounded-[10px] ${
-                  index === activeSlide ? "ring-2 ring-midnight-graphite" : ""
+                className={`relative aspect-[4/3] overflow-hidden rounded-[16px] transition-all ${
+                  index === activeSlide ? "ring-2 ring-midnight-ink ring-offset-2" : "opacity-60 hover:opacity-100"
                 }`}
                 aria-label={`Select ${item.title}`}
               >
@@ -237,37 +241,41 @@ function HeroStudioCard() {
 
 export function Hero() {
   return (
-    <section className="px-4 pb-16 pt-28 md:pb-24 md:pt-36 bg-canvas-white relative overflow-hidden">
-      {/* Decorative gradient background element */}
+    <section className="px-4 pb-20 pt-28 md:pb-32 md:pt-40 bg-canvas-white relative overflow-hidden">
+      {/* Decorative gradient background elements */}
       <div 
-        className="absolute -top-24 -right-24 w-96 h-96 opacity-30 blur-3xl pointer-events-none rounded-full" 
-        style={{ background: 'var(--gradient-digital-dawn)' }}
+        className="absolute -top-40 -right-40 w-[600px] h-[600px] opacity-20 blur-[100px] pointer-events-none rounded-full" 
+        style={{ background: 'var(--gradient-peach-sunset)' }}
+      />
+      <div 
+        className="absolute -bottom-40 -left-40 w-[600px] h-[600px] opacity-20 blur-[100px] pointer-events-none rounded-full" 
+        style={{ background: 'var(--gradient-sea-mist)' }}
       />
       
       <div className="section-shell relative z-10">
-        <div className="grid gap-8 lg:grid-cols-[1fr_0.82fr] lg:items-end">
+        <div className="grid gap-12 lg:grid-cols-[1fr_0.8fr] lg:items-end">
           <div>
-            <p className="mb-5 inline-flex items-center gap-2 text-sm text-slate-gray font-medium">
-              <span className="h-2 w-2 rounded-full bg-agent-violet animate-pulse" />
-              Day 7 / AI social media content factory
-            </p>
-            <h1 className="display-type max-w-[calc(100vw-64px)] text-[clamp(2.5rem,11vw,5.2rem)] leading-[0.92] text-midnight-graphite md:max-w-4xl">
+            <div className="mb-6 inline-flex items-center gap-3 rounded-full bg-fog-gray px-4 py-2 text-xs font-bold text-midnight-ink uppercase tracking-wider">
+              <span className="h-2 w-2 rounded-full bg-midnight-ink animate-pulse" />
+              AI Social Media Content Factory
+            </div>
+            <h1 className="display-type max-w-[calc(100vw-64px)] text-[clamp(2.5rem,10vw,5.5rem)] leading-[0.92] text-midnight-ink md:max-w-4xl">
               Your AI agents <br />
-              <span className="agent-gradient-text">can scale your voice.</span>
+              <span className="text-medium-gray">can scale your voice.</span>
             </h1>
           </div>
           <div className="max-w-[calc(100vw-64px)] lg:max-w-xl lg:justify-self-end">
-            <p className="text-[17px] leading-8 text-slate-gray md:text-[19px] font-medium">
+            <p className="text-[18px] leading-8 text-slate-text md:text-[20px] font-medium">
               Staria turns your core ideas into multi-platform social systems. 
               Orchestrate specialized AI agents to draft, render, and schedule 
               content that stays perfectly in your brand voice.
             </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link href="#cta" className="pill-primary">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Link href="#cta" className="pill-primary h-14 px-8 text-lg">
                 Deploy your factory
                 <Rocket className="h-4 w-4" aria-hidden="true" />
               </Link>
-              <Link href="#workflow" className="pill-secondary">
+              <Link href="#workflow" className="pill-secondary h-14 px-8 text-lg">
                 See the workflow
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
@@ -275,7 +283,7 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mt-16">
+        <div className="mt-24">
           <HeroStudioCard />
         </div>
       </div>

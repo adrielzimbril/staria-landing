@@ -50,7 +50,42 @@ export const imageTiles = [
     src: "/img/portrait-fantasy-sea-creature.jpg",
     alt: "AI-generated social media content - Fantasy",
     label: "YouTube",
-  },
+  },  
+    {
+      src: "/img/abstract-floral-smoke-composition.jpg",
+      alt: "AI-generated abstract floral smoke composition",
+      label: "Facebook",
+    },
+    {
+      src: "/img/darkly-atmospheric-retail-environment-rendering.jpg",
+      alt: "AI-generated atmospheric retail environment",
+      label: "Google Photos",
+    },
+    {
+      src: "/img/abstract-portrait-with-light-effects.jpg",
+      alt: "AI-generated abstract portrait with light effects",
+      label: "Whatsapp Status",
+    },
+    {
+      src: "/img/purple-mountain-lake-aesthetic.jpg",
+      alt: "AI-generated purple mountain lake aesthetic scene",
+      label: "Whatsapp Status",
+    },
+    {
+      src: "/img/digital-art-style-portrait-adult-woman.jpg",
+      alt: "AI-generated digital art style portrait of an adult woman",
+      label: "Twitter",
+    },
+    {
+      src: "/img/handsome-man-posing-studio.jpg",
+      alt: "AI-generated studio portrait of a man",
+      label: "Whatsapp Stories",
+    },
+    {
+      src: "/img/portrait-person-with-visual-metaphor-memory.jpg",
+      alt: "AI-generated portrait with a visual memory metaphor",
+      label: "Youtube Stories",
+    },
 ];
 
 export const workflowSteps = [

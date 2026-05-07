@@ -7,7 +7,7 @@ export function Logo() {
       className="group inline-flex items-center gap-2.5 no-underline"
       aria-label="Staria home"
     >
-      <span className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-midnight-graphite text-canvas-white transition-transform group-hover:scale-105">
+      <span className="relative flex h-8 w-8 items-center justify-center rounded-lg bg-midnight-ink text-canvas-white transition-transform group-hover:scale-105">
         <svg
           aria-hidden="true"
           viewBox="0 0 28 28"
@@ -19,9 +19,9 @@ export function Logo() {
             fill="currentColor"
           />
         </svg>
-        <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-agent-violet ring-2 ring-canvas-white animate-pulse" />
+        <span className="absolute -right-1 -top-1 h-3 w-3 rounded-full bg-[#efdcb6] ring-2 ring-canvas-white" />
       </span>
-      <span className="text-[17px] font-bold tracking-tight text-midnight-graphite">Staria</span>
+      <span className="text-[17px] font-bold tracking-tight text-midnight-ink">Staria</span>
     </Link>
   );
 }

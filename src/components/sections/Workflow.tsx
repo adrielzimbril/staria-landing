@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export function Workflow() {
   return (
-    <section id="workflow" className="px-4 py-16 md:py-24">
+    <section id="workflow" className="px-4 py-[var(--section-gap)]">
       <div className="section-shell">
         <SectionHeader
           eyebrow="Workflow"
@@ -11,19 +11,19 @@ export function Workflow() {
           body="Staria is positioned as a high-velocity production factory for social teams: orchestrating multiple agents to maintain scale without losing your unique brand voice."
         />
 
-        <div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {workflowSteps.map(({ icon: Icon, title, body }, index) => (
-            <article key={title} className="hairline-card p-5">
-              <div className="mb-10 flex items-center justify-between">
-                <span className="font-mono text-sm text-fog">
+            <article key={title} className="interactive-card flex flex-col !p-8">
+              <div className="mb-12 flex items-center justify-between">
+                <span className="font-mono text-sm font-semibold text-medium-gray">
                   0{index + 1}
                 </span>
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-cloud-white text-midnight-graphite">
-                  <Icon className="h-4 w-4" aria-hidden="true" />
-                </span>
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-fog-gray text-midnight-ink">
+                  <Icon className="h-5 w-5" aria-hidden="true" />
+                </div>
               </div>
-              <h3 className="text-[17px] font-medium text-midnight-graphite">{title}</h3>
-              <p className="mt-3 text-sm leading-6 text-slate-gray">{body}</p>
+              <h3 className="display-type text-[18px] text-midnight-ink">{title}</h3>
+              <p className="body-type mt-4 text-[14px] leading-relaxed text-slate-text">{body}</p>
             </article>
           ))}
         </div>
