@@ -1,0 +1,13 @@
+.next/
+node_modules/
+out/
+build/
+dist/
+.env*
+!.env.example
+*.log
+DESIGN.md
+design.md
+.design/
+.deisgn/
+.design-files/

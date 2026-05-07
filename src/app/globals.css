@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Staria Design System (Ref: WRITER) */
+  --color-midnight-graphite: #000000;
+  --color-canvas-white: #ffffff;
+  --color-slate-gray: #2d2d2d;
+  --color-cloud-white: #e4e7ed;
+  --color-fog: #d2d4d7;
+  --color-ghost-gray: #bdbdbd;
+  --color-lavender-mist: #e4e9ff;
+  --color-agent-violet: #a95ef8;
+  --color-action-blue: #5551ff;
+  --color-electric-blue: #007aff;
+  
+  --color-background: var(--color-canvas-white);
+  --color-foreground: var(--color-midnight-graphite);
+  
+  --font-sans: var(--font-poppins);
+  --font-serif: var(--font-caneladeck);
+  
+  --shadow-subtle: rgba(0, 0, 0, 0.05) 0px 0px 0px 0.5px inset;
+  --shadow-card:
+    rgba(0, 0, 0, 0.1) 0px 0px 1px 0px, rgba(0, 0, 0, 0.02) 0px 2px 4px 0px;
+  --shadow-pill:
+    rgba(85, 81, 255, 0.1) 0px 4px 12px, rgba(0, 0, 0, 0.04) 0px 1px 2px 0px;
+
+  --gradient-digital-dawn: linear-gradient(50deg, rgb(247, 200, 237) 50px, rgb(229, 236, 255) 130px, rgb(229, 236, 255) 100%);
+}
+
+:root {
+  --page-max: 1136px;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+  background: var(--color-canvas-white);
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--color-canvas-white);
+  color: var(--color-midnight-graphite);
+  font-family: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--color-agent-violet);
+  color: var(--color-canvas-white);
+}
+
+@utility section-shell {
+  width: calc(100% - 32px);
+  max-width: var(--page-max);
+  margin-inline: auto;
+  min-width: 0;
+}
+
+@utility display-type {
+  font-family: var(--font-poppins);
+  font-weight: 700;
+  letter-spacing: -0.031em;
+}
+
+@utility label-type {
+  font-family: var(--font-poppins);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@utility pill-primary {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 82px;
+  background: var(--color-action-blue);
+  color: var(--color-canvas-white);
+  padding-inline: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  transition: all 180ms ease;
+  &:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+  }
+}
+
+@utility pill-secondary {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--color-fog);
+  border-radius: 60px;
+  background: var(--color-canvas-white);
+  color: var(--color-midnight-graphite);
+  padding-inline: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  transition: all 180ms ease;
+  &:hover {
+    border-color: var(--color-midnight-graphite);
+    background: var(--color-cloud-white);
+  }
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  opacity: 0.03;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.agent-gradient-text {
+  background: var(--gradient-digital-dawn);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.violet-accent {
+  color: var(--color-agent-violet);
+}
+
+.interactive-card {
+  transition: all 200ms ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+  }
+}
